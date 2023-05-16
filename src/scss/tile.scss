@@ -1,0 +1,46 @@
+@import './variables.scss';
+
+.tile {
+    display: block;
+    text-decoration: none;
+    border-radius: 20px;
+    border: 2px dashed rgba($blue-dark, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+    min-height: 290px;
+    max-width: 360px;
+    transition: all 0.3s;
+
+    &:hover {
+        border-color: $yellow;
+        background: $yellow;
+
+        .tile {
+            &__icon {
+                color: $white;
+            }
+
+            &__title {
+                color: $white;
+            }
+        }
+    }
+
+    &__icon {
+        width: 55px;
+        color: $yellow;
+        transition: color 0.3s;
+    }
+
+    &__title {
+        color: $yellow;
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: color 0.3s;
+    }
+}

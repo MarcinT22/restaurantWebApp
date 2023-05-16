@@ -1,0 +1,58 @@
+@import './variables.scss';
+
+.menu {
+    width: 320px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 15px 15px 15px 15px;
+
+    &__logo {
+        font-size: 24px;
+        color: $white;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    &__nav {
+        max-width: 235px;
+        margin-top: 40px;
+    }
+
+    &__list {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+
+    }
+
+    &__item {
+        margin: 10px 0;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $white;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        padding: 12px 15px;
+        border-radius: 30px;
+        transition: background 0.3s linear;
+
+        &.active {
+            background: rgba($white, 0.3);
+        }
+
+
+        &:hover {
+            background: rgba($white, 0.3);
+        }
+    }
+
+    &__icon {
+        width: 24px;
+        margin-right: 10px;
+    }
+}

@@ -1,0 +1,119 @@
+@import './variables.scss';
+
+.auth {
+    background-image: url('../assets/img/restaurant-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    @media (max-width:$screen-md) {
+        justify-content: center;
+    }
+
+    &__container {
+        margin-right: 10%;
+
+
+        @media (max-width:$screen-md) {
+            margin-right: 0;
+            width: 100%;
+        }
+    }
+
+    &__header {
+        font-weight: 500;
+        text-align: center;
+
+        &--main {
+            font-size: 50px;
+            color: $white;
+            font-weight: bold;
+            text-shadow: 2px 2px 3px rgba($black, 0.2);
+
+            @media (max-width:$screen-sm) {
+                font-size: 32px;
+            }
+        }
+
+        &--highlight {
+            color: $yellow;
+            font-size: 30px;
+
+            @media (max-width:$screen-sm) {
+                font-size: 26px;
+            }
+        }
+
+    }
+
+    &__content {
+        background: $white;
+        border-radius: 10px;
+        padding: 15px 25px 40px 25px;
+        width: 100%;
+        max-width: 370px;
+        box-shadow: 4px 4px 10px 0 rgba($black, 0.3);
+
+        @media (max-width:$screen-md) {
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 0 auto;
+
+        }
+    }
+
+    &__form {
+        margin: 10px 0;
+    }
+
+    &__field {
+        margin: 20px 0;
+    }
+
+    &__input {
+        width: 100%;
+        font-size: 16px;
+        color: $black;
+        padding: 12px 20px;
+        background: rgba($grey, 0.3);
+        border-radius: 10px;
+
+        @media (max-width:$screen-sm) {
+            font-size: 14px;
+        }
+
+        &::placeholder {
+            color: $black;
+        }
+
+        &:focus {
+            outline: 2px solid $yellow;
+        }
+
+    }
+
+    &__button {
+        width: 100%;
+        background: $red-dark;
+        color: $white;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 10px;
+        padding: 12px;
+        margin-top: 10px;
+        transition: background 0.3s ease-in-out;
+
+        &:hover {
+            background: $yellow;
+        }
+
+        @media (max-width:$screen-sm) {
+            font-size: 18px;
+        }
+    }
+}

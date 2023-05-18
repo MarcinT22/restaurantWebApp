@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import 'variables';
 
 .tile {
     display: block;
@@ -11,9 +11,16 @@
     flex-direction: column;
     padding: 20px;
     width: 100%;
-    min-height: 290px;
-    max-width: 360px;
+    min-height: 240px;
+    cursor: pointer;
+
     transition: all 0.3s;
+
+    @media (max-width:$screen-lg) {
+        min-height: 200px;
+    }
+
+
 
     &:hover {
         border-color: $yellow;
@@ -32,15 +39,22 @@
 
     &__icon {
         width: 55px;
-        color: $yellow;
+        color: rgba($blue-dark, 0.3);
         transition: color 0.3s;
     }
 
     &__title {
-        color: $yellow;
-        font-size: 20px;
+        color: rgba($blue-dark, 0.3);
+        font-size: 18px;
         font-weight: bold;
         text-transform: uppercase;
         transition: color 0.3s;
+        text-align: center;
+        line-height: 100%;
+        margin-top: 5px;
+
+        @media (max-width:$screen-lg) {
+            font-size: 16px;
+        }
     }
 }

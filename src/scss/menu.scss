@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import 'variables';
 
 .menu {
     width: 320px;
@@ -6,7 +6,73 @@
     top: 0;
     left: 0;
     bottom: 0;
-    padding: 15px 15px 15px 15px;
+    height: 100%;
+    padding: 15px 15px 50px 15px;
+    z-index: 99;
+    transition: transform 0.3s;
+
+    @media (max-width:$screen-md) {
+        transform: translateX(-100%);
+        background: $red-dark;
+        width: 100%;
+
+
+        &--show {
+            transform: translate(0);
+        }
+    }
+
+    &__hamburger {
+        width: 40px;
+        border: 0;
+        background: rgba(0, 0, 0, 0);
+        padding: 0;
+        position: absolute;
+        right: 0px;
+        top: 9px;
+        transform: translateX(60px);
+        transition: transform 0.3s;
+
+        &--transform {
+            transform: translateX(-20px);
+        }
+
+        span {
+            width: 40px;
+            height: 4px;
+            background: #fff;
+            border-radius: 5px;
+            display: block;
+            margin: 8px 0;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        &.active {
+
+            span {
+                &:nth-child(1) {
+                    transform: rotate(45deg);
+                    position: absolute;
+                    top: 0;
+                }
+
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+
+                &:nth-child(3) {
+                    transform: rotate(-45deg);
+                    position: absolute;
+                    top: 0;
+                }
+            }
+        }
+
+
+        @media (min-width:$screen-md + 1px) {
+            display: none;
+        }
+    }
 
     &__logo {
         font-size: 24px;
@@ -15,15 +81,28 @@
         text-decoration: none;
     }
 
+    &__content {
+        height: 100%;
+
+    }
+
     &__nav {
-        max-width: 235px;
+
         margin-top: 40px;
+        overflow-y: auto;
+        height: 100%;
+
+        @media (max-width:$screen-md) {
+
+            margin-top: 10px;
+        }
     }
 
     &__list {
         padding: 0;
         margin: 0;
         list-style-type: none;
+        max-width: 235px;
 
     }
 

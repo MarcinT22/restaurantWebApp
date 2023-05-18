@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import 'variables';
 
 body {
 
@@ -13,19 +13,29 @@ body {
 .dashboard {
     display: flex;
     justify-content: flex-end;
+    padding-bottom: 20px;
 
     &__container {
         padding-right: 20px;
         width: calc(100% - 320px);
+
+        @media (max-width:$screen-md) {
+            width: 100%;
+            padding: 0 20px;
+        }
     }
 
 
     &__top {
+        position: sticky;
+        top: 0;
+        left: 320px;
         background: $red-dark;
-        padding: 15px 0;
+        padding: 15px 0px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        z-index: 1;
     }
 
     &__title {
@@ -33,6 +43,10 @@ body {
         color: $white;
         font-weight: 500;
         text-decoration: none;
+
+        @media (max-width:$screen-md) {
+            margin-left: 60px;
+        }
     }
 
     &__logout {
@@ -56,6 +70,16 @@ body {
         background: #fff;
         border-radius: 30px;
         padding: 30px 40px;
+
+        @media (max-width:$screen-md) {
+            padding: 20px 30px;
+            border-radius: 10px;
+
+        }
+
+        @media (max-width:$screen-sm) {
+            padding: 20px;
+        }
     }
 
     &__header {
@@ -64,12 +88,51 @@ body {
         font-weight: 400;
         margin: 0;
         margin-bottom: 20px;
+        line-height: 120%;
+
+        @media (max-width:$screen-md) {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        @media (max-width:$screen-sm) {
+            flex-direction: column;
+        }
     }
 
     &__row {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
+        align-items: flex-start;
+        margin: 0 -10px;
+
+
+
     }
+
+    &__col {
+        padding: 10px;
+        width: 25%;
+
+        @media (max-width:$screen-lg) {
+            width: 33.33%;
+        }
+
+        @media (max-width:$screen-sm) {
+            width: 100%;
+        }
+
+
+
+    }
+
+
 
 }

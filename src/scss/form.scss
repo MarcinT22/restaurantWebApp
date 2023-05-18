@@ -1,0 +1,90 @@
+@import 'variables';
+@import 'button';
+
+.form {
+
+    &__field {
+        margin: 10px 0;
+
+        &--file {
+            margin: 30px 0;
+            display: flex;
+            align-items: flex-start;
+
+            @media (max-width:$screen-sm) {
+                flex-direction: column;
+            }
+        }
+    }
+
+    &__label {
+        font-weight: 600;
+        color: $black;
+        font-size: 16px;
+    }
+
+    &__input {
+        display: block;
+        background: rgba($grey, 0.3);
+        width: 100%;
+        font-size: 16px;
+        padding: 10px 15px;
+        border-radius: 3px;
+        margin-top: 3px;
+
+        &:focus {
+            outline-color: $yellow;
+        }
+
+        &--hidden {
+            visibility: hidden;
+            position: absolute;
+            width: 0;
+        }
+    }
+
+    &__file {
+        display: block;
+        width: 100%;
+        max-width: 370px;
+    }
+
+    &__button {
+        @extend .button;
+    }
+
+    &__selectedFile {
+        margin-right: 20px;
+
+        @media (max-width:$screen-sm) {
+            margin-right: 0;
+            margin-bottom: 20px;
+
+        }
+    }
+
+    &__thumbnail {
+        max-width: 340px;
+        max-height: 240px;
+        border-radius: 20px;
+        width: 100%;
+        object-fit: cover;
+
+        @media (max-width:$screen-md) {
+            max-width: 300px;
+        }
+
+
+    }
+
+    &__fileName {
+        font-size: 14px;
+        margin-bottom: 10px;
+        font-weight: 600;
+
+        span {
+            font-style: italic;
+        }
+    }
+
+}

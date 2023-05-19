@@ -1,20 +1,11 @@
 import React from "react";
 import "../../scss/categoryItem.scss";
 import { Link } from "react-router-dom";
+import FoodCategory from "../../interfaces/FoodCategory";
 
-interface CategoryItemProps {
-  imagePath: string;
-  name: string;
-  linkTo: string;
-}
-
-const CategoryItem: React.FC<CategoryItemProps> = ({
-  imagePath,
-  name,
-  linkTo,
-}) => {
+const CategoryItem: React.FC<FoodCategory> = ({ imagePath, name }) => {
   return (
-    <Link to={linkTo} className="categoryItem">
+    <Link to="" className="categoryItem">
       <img src={imagePath} alt="" className="categoryItem__img" />
       <h2 className="categoryItem__name">{name}</h2>
     </Link>

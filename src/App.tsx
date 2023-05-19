@@ -8,8 +8,9 @@ import Welcome from "./views/dashboard/Welcome";
 import FoodCategoryList from "./views/dashboard/food/FoodCategoryList";
 import FoodList from "./views/dashboard/food/FoodList";
 import Auth from "./components/Auth";
-import { auth } from "./db/firebase";
+import { auth } from "./firebase";
 import CreateFoodCategory from "./views/dashboard/food/CreateFoodCategory";
+import CreateFood from "./views/dashboard/food/CreateFood";
 
 const App: React.FC = () => {
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
@@ -28,29 +29,18 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Login signIn={signIn} />} />
         <Route
-          path="/dashboard/"
+          path="/dashboard/*"
           element={
             <Auth isSignedIn={isSignedIn}>
               <Dashboard signOut={signOut} />
             </Auth>
           }
         >
-          <Route index element={<Welcome />}></Route>
-          <Route
-            path="/dashboard/food-category"
-            element={<FoodCategoryList />}
-          ></Route>
-          <Route path="/dashboard/food-list" element={<FoodList />} />
-          <Route path="*" element={<NotFound />} />
-          <Route
-            path="/dashboard/food-category"
-            element={<FoodCategoryList />}
-          ></Route>
-          <Route
-            path="/dashboard/food-category/create"
-            element={<CreateFoodCategory />}
-          ></Route>
-          <Route path="/dashboard/food-list" element={<FoodList />} />
+          <Route index element={<Welcome />} />
+          <Route path="food-category" element={<FoodCategoryList />} />
+          <Route path="food-category/create" element={<CreateFoodCategory />} />
+          <Route path="foods" element={<FoodList />} />
+          <Route path="foods/create" element={<CreateFood />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="*" element={<NotFound />} />

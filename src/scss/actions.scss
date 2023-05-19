@@ -1,0 +1,40 @@
+@import 'variables';
+
+.actions {
+    position: absolute;
+    z-index: 1;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    &__button {
+        background: $white;
+        border-radius: 20px;
+        color: $black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+
+
+        &--delete {
+            color: $red-dark;
+        }
+
+        &:hover {
+            .actions {
+                &__icon {
+                    width: 30px;
+                }
+            }
+        }
+    }
+
+    &__icon {
+        width: 24px;
+        transition: width 0.3s;
+    }
+}

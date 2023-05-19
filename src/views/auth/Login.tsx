@@ -1,8 +1,9 @@
 import React, { FormEvent, useState } from "react";
 import "../../scss/auth.scss";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../db/firebase";
+import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import Alert from "../../components/Alert";
 
 interface LoginProps {
   signIn: () => void;
@@ -12,12 +13,13 @@ const Login: React.FC<LoginProps> = ({ signIn }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorAuth, setErrorAuth] = useState<boolean | null>(null);
+  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [alertType, setAlertType] = useState<string>("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrorAuth(false);
+    setAlertMessage("");
     setIsLoading(true);
 
     try {
@@ -25,7 +27,8 @@ const Login: React.FC<LoginProps> = ({ signIn }) => {
       signIn();
       navigate("/dashboard/");
     } catch (error) {
-      setErrorAuth(true);
+      setAlertType("error");
+      setAlertMessage("Invalid login credentials");
       setIsLoading(false);
     }
   };
@@ -55,9 +58,8 @@ const Login: React.FC<LoginProps> = ({ signIn }) => {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
-            {errorAuth && (
-              <div className="auth__error">Invalid login credentials</div>
-            )}
+
+            {alertMessage && <Alert message={alertMessage} type={alertType} />}
 
             <button type="submit" className="auth__button" disabled={isLoading}>
               {!isLoading ? "Login" : <span></span>}

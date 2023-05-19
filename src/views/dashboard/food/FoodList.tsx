@@ -2,24 +2,24 @@ import React, { useEffect, useState } from "react";
 import ContentTitle from "../../../components/ContentTitle";
 import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
-import { mdiPlusThick } from "@mdi/js";
+import { mdiPlusThick, mdiPlus } from "@mdi/js";
 import FoodItem from "../../../components/food/FoodItem";
-import { fetchData } from "../../../db/utils";
 
-interface Food {
-  id: string;
-  name: string;
-  category: string;
-  price: number;
-  imagePath: string;
-}
+import Food from "../../../interfaces/Food";
+import TileElement from "../../../components/TileElement";
+import { fetchData } from "../../../db/database";
 
 const FoodList: React.FC = () => {
   const [foods, setFoods] = useState<Food[]>([]);
 
   const fetchFood = async () => {
-    const foodData = await fetchData<Food>("food");
-    setFoods(foodData);
+    try {
+      const foodData = await fetchData<Food>("foods");
+
+      setFoods(foodData);
+    } catch (error) {
+      console.error("error: ", error);
+    }
   };
 
   useEffect(() => {
@@ -31,20 +31,22 @@ const FoodList: React.FC = () => {
       <div className="dashboard__head">
         <ContentTitle title="Food list" />
         <div className="dashboard__actions">
-          <Link to="" className="button">
+          <Link to="create" className="button">
             Add new <Icon path={mdiPlusThick} className="button__icon" />
           </Link>
         </div>
       </div>
-      {foods.map((food) => (
+      {foods.map((food, index) => (
         <FoodItem
+          id={food.id}
           name={food.name}
-          category="Pizza"
           price={food.price}
+          categoryId={food.categoryId}
           imagePath={food.imagePath}
-          key={food.id}
+          key={index}
         />
       ))}
+      <TileElement icon={mdiPlus} title="Add new item" linkTo="create" />
     </>
   );
 };

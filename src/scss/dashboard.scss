@@ -120,6 +120,7 @@ body {
     &__col {
         padding: 10px;
         width: 25%;
+        position: relative;
 
         @media (max-width:$screen-lg) {
             width: 33.33%;

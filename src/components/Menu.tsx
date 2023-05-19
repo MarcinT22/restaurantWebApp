@@ -50,7 +50,7 @@ const Menu: React.FC = () => {
               </NavLink>
             </li>
             <li className="menu__item">
-              <NavLink className="menu__link" to="food-list">
+              <NavLink className="menu__link" to="foods">
                 <Icon className="menu__icon" path={mdiHamburger} /> Food list
               </NavLink>
             </li>

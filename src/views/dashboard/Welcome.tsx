@@ -11,14 +11,14 @@ const Welcome: React.FC = () => {
           <TileElement
             icon={mdiFoodForkDrink}
             title="Add new food category"
-            linkTo="/dashboard/food-category/create"
+            linkTo="food-category/create"
           />
         </div>
         <div className="dashboard__col">
           <TileElement
             icon={mdiHamburger}
             title="Add new food"
-            linkTo="/add-food"
+            linkTo="foods/create"
           />
         </div>
         <div className="dashboard__col">

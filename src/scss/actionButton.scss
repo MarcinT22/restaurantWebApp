@@ -1,0 +1,31 @@
+@import 'variables';
+
+
+.actionButton {
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    background: rgba(0, 0, 0, 0);
+    transition: opacity 0.3s;
+    margin-left: 10px;
+    text-decoration: none;
+
+    &__icon {
+        width: 20px;
+        margin-left: 5px;
+    }
+
+    &--edit {
+        color: $yellow;
+    }
+
+    &--remove {
+        color: $red-dark;
+    }
+
+    &:hover {
+        opacity: 0.7;
+    }
+
+
+}

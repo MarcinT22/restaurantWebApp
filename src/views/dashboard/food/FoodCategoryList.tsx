@@ -11,21 +11,22 @@ import FoodCategory from "../../../interfaces/FoodCategory";
 import "../../../scss/actions.scss";
 import Alert from "../../../components/Alert";
 import { deleteData, getFoodCategories } from "../../../db/database";
+import Loader from "../../../components/Loader";
 
 const FoodCategoryList: React.FC = () => {
   const [foodCategories, setFoodCategories] = useState<FoodCategory[]>([]);
   const [alertMessage, setAlertMessage] = useState<string>("");
   const [alertType, setAlertType] = useState<string>("");
 
-  const removeItem = async (id: string) => {
+  const removeItem = async (id: string): Promise<void> => {
     try {
-      deleteData("food-categories", id);
+      await deleteData("food-categories", id);
       setAlertType("success");
       setAlertMessage("Category has been deleted");
     } catch (error) {}
   };
 
-  const getCategories = async () => {
+  const getCategories = async (): Promise<void> => {
     try {
       const foodCategoriesData = await getFoodCategories();
       setFoodCategories(foodCategoriesData);
@@ -48,7 +49,11 @@ const FoodCategoryList: React.FC = () => {
           </Link>
         </div>
       </div>
+
       {alertMessage && <Alert message={alertMessage} type={alertType} />}
+
+      {!foodCategories.length && <Loader />}
+
       <div className="dashboard__row">
         {foodCategories.map((category, index) => (
           <div className="dashboard__col" key={index}>

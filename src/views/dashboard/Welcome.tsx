@@ -25,7 +25,7 @@ const Welcome: React.FC = () => {
           <TileElement
             icon={mdiTableChair}
             title="Manage tables"
-            linkTo="/manage-tables"
+            linkTo="tables"
           />
         </div>
       </div>

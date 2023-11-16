@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import { handleFile } from "../../../utils";
 import Alert from "../../../components/Alert";
-const CreateFoodCategory: React.FC = () => {
+const FoodCategoryForm: React.FC = () => {
   const [categoryName, setCategoryName] = useState<string>("");
   const [fileName, setFileName] = useState<string>("");
   const [thumbnail, setThumbnail] = useState<string>("");
@@ -43,7 +43,7 @@ const CreateFoodCategory: React.FC = () => {
 
       if (response) {
         setAlertType("success");
-        setAlertMessage("Category has been added");
+        setAlertMessage(`Category ${categoryName} has been added`);
         setCategoryName("");
         setThumbnail("");
       }
@@ -100,4 +100,4 @@ const CreateFoodCategory: React.FC = () => {
   );
 };
 
-export default CreateFoodCategory;
+export default FoodCategoryForm;

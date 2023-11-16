@@ -1,12 +1,8 @@
 export default interface Food {
-  id: string;
+  id?: string;
   name: string;
   price: number;
   ingredients?: string;
-  categoryId: string;
+  category: string;
   imagePath: string;
-}
-
-export interface FoodWithCategory extends Food {
-  categoryName: string;
 }

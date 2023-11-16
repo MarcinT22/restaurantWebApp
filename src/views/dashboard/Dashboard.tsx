@@ -17,7 +17,7 @@ const Dashboard: React.FC<Dashboard> = ({ signOut }) => {
           <div className="dashboard__top">
             <div className="dashboard__title">Dashboard</div>
             <button className="dashboard__logout" onClick={signOut}>
-              Wyloguj
+              Log out
             </button>
           </div>
 

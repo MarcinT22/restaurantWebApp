@@ -8,11 +8,12 @@ import FoodItem from "../../../components/food/FoodItem";
 import Food from "../../../interfaces/Food";
 import TileElement from "../../../components/TileElement";
 import { fetchData } from "../../../db/database";
+import Loader from "../../../components/Loader";
 
 const FoodList: React.FC = () => {
   const [foods, setFoods] = useState<Food[]>([]);
 
-  const fetchFood = async () => {
+  const fetchFood = async (): Promise<void> => {
     try {
       const foodData = await fetchData<Food>("foods");
 
@@ -29,22 +30,16 @@ const FoodList: React.FC = () => {
   return (
     <>
       <div className="dashboard__head">
-        <ContentTitle title="Food list" />
+        <ContentTitle title="Offer" />
         <div className="dashboard__actions">
           <Link to="create" className="button">
             Add new <Icon path={mdiPlusThick} className="button__icon" />
           </Link>
         </div>
       </div>
+      {!foods.length && <Loader />}
       {foods.map((food, index) => (
-        <FoodItem
-          id={food.id}
-          name={food.name}
-          price={food.price}
-          categoryId={food.categoryId}
-          imagePath={food.imagePath}
-          key={index}
-        />
+        <FoodItem {...food} key={index} />
       ))}
       <TileElement icon={mdiPlus} title="Add new item" linkTo="create" />
     </>

@@ -9,13 +9,10 @@ import {
   orderBy,
   deleteDoc,
   doc,
-  where,
-  collectionGroup,
   getDoc,
+  setDoc,
 } from "firebase/firestore";
 import FoodCategory from "../interfaces/FoodCategory";
-import { type } from "os";
-import Food, { FoodWithCategory } from "../interfaces/Food";
 
 export const fetchData = async <T>(
   collectionPath: string,
@@ -33,7 +30,10 @@ export const fetchData = async <T>(
     const data: T[] = [];
 
     snapshot.forEach((doc) => {
-      const item: T = { ...doc.data() } as T;
+      const item: T & { id: string } = {
+        id: doc.id,
+        ...doc.data(),
+      } as T & { id: string };
       data.push(item);
     });
 
@@ -42,6 +42,26 @@ export const fetchData = async <T>(
     console.error("Error: ", error);
     return [];
   }
+};
+
+export const fetchDataById = async <T>(
+  collectionPath: string,
+  id: string
+): Promise<T | null> => {
+  try {
+    const docRef = doc(db, collectionPath, id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data() as T;
+    } else {
+      console.log("Do not exist");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error", error);
+  }
+  return null;
 };
 
 export const deleteData = async (collectionPath: string, id: string) => {
@@ -55,9 +75,27 @@ export const deleteData = async (collectionPath: string, id: string) => {
 export const getFoodCategories = async (): Promise<FoodCategory[]> => {
   try {
     const foodCategoriesData = await fetchData<FoodCategory>("food-categories");
+
     return foodCategoriesData;
   } catch (error) {
     console.error("error: ", error);
     return [];
+  }
+};
+
+interface UpdateData {
+  [key: string]: any;
+}
+
+export const updateData = async <T extends UpdateData>(
+  collectionPath: string,
+  id: string,
+  data: T
+) => {
+  try {
+    const docRef = doc(db, collectionPath, id);
+    await setDoc(docRef, data);
+  } catch (error) {
+    console.log("Error updating data: ", error);
   }
 };

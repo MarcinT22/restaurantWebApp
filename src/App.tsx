@@ -9,8 +9,8 @@ import FoodCategoryList from "./views/dashboard/food/FoodCategoryList";
 import FoodList from "./views/dashboard/food/FoodList";
 import Auth from "./components/Auth";
 import { auth } from "./firebase";
-import CreateFoodCategory from "./views/dashboard/food/CreateFoodCategory";
-import CreateFood from "./views/dashboard/food/CreateFood";
+import FoodCategoryForm from "./views/dashboard/food/FoodCategoryForm";
+import FoodForm from "./views/dashboard/food/FoodForm";
 
 const App: React.FC = () => {
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
@@ -38,9 +38,10 @@ const App: React.FC = () => {
         >
           <Route index element={<Welcome />} />
           <Route path="food-category" element={<FoodCategoryList />} />
-          <Route path="food-category/create" element={<CreateFoodCategory />} />
+          <Route path="food-category/create" element={<FoodCategoryForm />} />
           <Route path="foods" element={<FoodList />} />
-          <Route path="foods/create" element={<CreateFood />} />
+          <Route path="foods/create" element={<FoodForm />} />
+          <Route path="foods/edit/:id" element={<FoodForm />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="*" element={<NotFound />} />

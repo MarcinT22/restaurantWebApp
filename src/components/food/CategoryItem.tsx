@@ -5,7 +5,7 @@ import FoodCategory from "../../interfaces/FoodCategory";
 
 const CategoryItem: React.FC<FoodCategory> = ({ imagePath, name }) => {
   return (
-    <Link to="" className="categoryItem">
+    <Link to="/" className="categoryItem">
       <img src={imagePath} alt="" className="categoryItem__img" />
       <h2 className="categoryItem__name">{name}</h2>
     </Link>
